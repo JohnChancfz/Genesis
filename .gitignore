@@ -1,5 +1,6 @@
 # idea
 .idea
+.DS_Store
 # app
 out
 # Byte-compiled / optimized / DLL files

@@ -2,7 +2,7 @@
 
 '''
     code generator
-    @Author cfz
+    @Author John Chan 'chenfazhun@163.com'
 '''
 
 import os
@@ -38,8 +38,10 @@ def read_file(path):
     return seq
 
 
-def export_file(path, seq):
-    java_file = open("./out/entity/Item.java", 'w')
+def export_file(path, name, seq):
+    if not os.path.exists(path):
+        os.makedirs(path)
+    java_file = open(path + os.sep + name, 'w')
     java_file.writelines(seq)
     java_file.close()
 
