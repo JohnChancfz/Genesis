@@ -1,10 +1,10 @@
 # Genesis
 Java Code Generation
 
+
 ```
 graph LR
-md file-->Entity
-       -->Dao
+A-->B
 ```
 
 ### 20190119
@@ -74,6 +74,8 @@ service = {'fileName': 'controller',
     -- controller
 
 
+# contact
 
+    johnchancfz@yahoo.com
 
 
