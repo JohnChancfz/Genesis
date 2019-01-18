@@ -73,5 +73,8 @@ service = {'fileName': 'controller',
 # contact
 
     johnchancfz@yahoo.com
+    
+    
+   ![打赏](http://weifangmountainfood.com/public/upload/portal/20190119/45b5fd276e7c8b289b3d2a031dc298bc.jpeg)
 
 
