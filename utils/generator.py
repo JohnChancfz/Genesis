@@ -5,12 +5,14 @@
     @Author cfz
 '''
 
+
 def generator():
     print ''
 
-def java_generator(seq):
+
+def java_generator(array):
     java_seq = []
-    for obj in seq:
+    for obj in array:
         name = obj['name']
         t = obj['type']
         size = obj['size']
@@ -22,7 +24,5 @@ def java_generator(seq):
             java_seq.append('@Id' + '\n')
             java_seq.append('@GeneratedValue(strategy = GenerationType.AUTO)' + '\n')
             java_seq.append('@Column(name = "id", nullable = false)' + '\n')
-
         java_seq.append('private ' + t + ' ' + name + ';' + '\n')
-
     return java_seq

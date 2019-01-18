@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from utils.operatefile import run
+from app import Genesis
 
 if __name__ == '__main__':
     print 'Genesis start...'
-    run()
-
-
+    genesis = Genesis()
+    genesis.run()
     print 'Genesis end!'
