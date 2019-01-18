@@ -75,6 +75,8 @@ service = {'fileName': 'controller',
     johnchancfz@yahoo.com
     
     
-   ![打赏](http://weifangmountainfood.com/public/upload/portal/20190119/45b5fd276e7c8b289b3d2a031dc298bc.jpeg)
+
+![打赏](https://thumbnail0.baidupcs.com/thumbnail/ad1d59c5d845eb14e2c9c8b472e90cfa?fid=3827379193-250528-1094346648416821&time=1547845200&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-%2Bx2e6J5FcwC%2BhV5ORHcSvIu8jnI%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=422529015482700127&dp-callid=0&size=c710_u400&quality=100&vuk=-&ft=video)
+
 
 
