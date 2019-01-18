@@ -2,14 +2,10 @@
 Java Code Generation
 
 
-```
-graph LR
-A-->B
-```
 
 ### 20190119
 
-* md文件生成 基于spring boot jpa实体类
+* md文件生成 基于spring boot jpa实体类 (Date,@Column)
 
 
 ## future
