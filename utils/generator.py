@@ -39,6 +39,21 @@ def capitalize_first(str):
     return str[0].upper() + str[1:]
 
 
+def lower_first(str):
+    return str[0].lower() + str[1:]
+
+
+# 写的好水 请原谅我
+def to2to(str):
+    ss = ''
+    for s in str[1:]:
+        if s.isupper():
+            s = '_' + s.lower()
+        ss = ss + s
+
+    return str[0].lower() + ss
+
+
 def setter(obj):
     s = '\t' + 'public void set' + capitalize_first(obj['name']) + '(' + obj['type'] + ' ' + obj['name'] + ') {this.' + \
         obj['name'] + ' = ' + obj['name'] + ';}' + '\n'
@@ -68,7 +83,7 @@ def java_entity_generator(name, array, isExtends=False):
     java_seq.append(add_author() + '\n')
 
     java_seq.append('@Entity\n')
-    java_seq.append('@Table(name = "genesis_' + name.lower() + '")\n')
+    java_seq.append('@Table(name = "genesis_' + to2to(name) + '")\n')
     java_seq.append('public class ' + name + en + '{' + '\n')
     for obj in array:
         name = obj['name']
