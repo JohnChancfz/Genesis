@@ -47,12 +47,16 @@ def export_file(path, name, seq):
 
 
 def get_java_type(t):
+    if t.lower() == 'float':
+        t = 'Float'
     if t.lower() == 'double':
         t = 'Double'
-
     if t.lower() in ['string', 'text', 'varchar']:
         t = 'String'
-
     if t.lower() == 'int' or t.lower() == 'integer':
         t = 'Integer'
+    if t.lower() == 'datetime' or t.lower() == 'date':
+        t = 'Date'
+    if t.lower() == 'tinyint':
+        t = 'Short'
     return t
