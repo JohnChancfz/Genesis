@@ -6,7 +6,9 @@
 '''
 
 from config import package_name, entity
-
+from string_utils import capitalize_first, lower_first, to2to
+from utils.operatefile import read_file
+import os
 
 def generator():
     print ''
@@ -33,25 +35,6 @@ def get_java_extends_base(obj):
         return 'import ' + obj['basePath'] + obj['baseName'] + ';', ' extends ' + obj['baseName']
     else:
         return 'import java.io.Serializable;', ' implements Serializable'
-
-
-def capitalize_first(str):
-    return str[0].upper() + str[1:]
-
-
-def lower_first(str):
-    return str[0].lower() + str[1:]
-
-
-# 写的好水 请原谅我
-def to2to(str):
-    ss = ''
-    for s in str[1:]:
-        if s.isupper():
-            s = '_' + s.lower()
-        ss = ss + s
-
-    return str[0].lower() + ss
 
 
 def setter(obj):
@@ -85,6 +68,17 @@ def java_entity_generator(name, array, isExtends=False):
     java_seq.append('@Entity\n')
     java_seq.append('@Table(name = "genesis_' + to2to(name) + '")\n')
     java_seq.append('public class ' + name + en + '{' + '\n')
+
+    entity_seq = get_java_entity_list(name)
+    java_seq.extend(entity_seq)
+
+    java_seq.append('}\n')
+    return java_seq
+
+def get_java_entity_list(name):
+    java_seq = []
+    path = os.path.join('./files', name+'.md')
+    array = read_file(path)
     for obj in array:
         name = obj['name']
         t = obj['type']
@@ -102,5 +96,5 @@ def java_entity_generator(name, array, isExtends=False):
         java_seq.append('\t' + 'private ' + t + ' ' + name + ';' + '\n\n')
         java_seq.append(getter_and_setter(obj))
 
-    java_seq.append('}\n')
     return java_seq
+
