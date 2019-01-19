@@ -53,10 +53,11 @@ def get_java_type(t):
         t = 'Double'
     if t.lower() in ['string', 'text', 'varchar']:
         t = 'String'
-    if t.lower() == 'int' or t.lower() == 'integer':
+    # if t.lower() == 'int' or t.lower() == 'integer':
+    if t.lower().find('int') >= 0:
         t = 'Integer'
     if t.lower() == 'datetime' or t.lower() == 'date':
         t = 'Date'
-    if t.lower() == 'tinyint':
-        t = 'Short'
+    # if t.lower() == 'tinyint':
+    #    t = 'Short'
     return t

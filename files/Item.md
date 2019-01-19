@@ -1,5 +1,5 @@
 # item
-name | type | default | remark
+name | type | default | remark 
 ---|---|---|---
 id | int | auto | ID
 cid | int | | 分类id
@@ -10,4 +10,4 @@ content | text | "" | 内容
 raisingMoney | double | 0.00 | 标的估值
 investmentCycle | int | 0 | 投资期限(年)
 region | varchar(255) | | 项目地域
-createTime | datetime | | 创建时间
+createTime | datetime | | 创建时间annotation

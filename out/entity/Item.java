@@ -79,4 +79,11 @@ public class Item implements Serializable{
 	public String getRegion() {return region;}
 
 	public void setRegion(String region) {this.region = region;}
+
+	// 创建时间annotation
+	private Date createTime;
+
+	public Date getCreateTime() {return createTime;}
+
+	public void setCreateTime(Date createTime) {this.createTime = createTime;}
 }
