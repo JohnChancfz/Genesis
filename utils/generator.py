@@ -72,7 +72,7 @@ def java_entity_generator(name, array, isExtends=False):
     java_seq.append('@Table(name = "genesis_' + to2to(name) + '")\n')
     java_seq.append('public class ' + name + en + '{' + '\n')
 
-    entity_seq = get_java_entity_list(name)
+    entity_seq = get_java_entity_list(array)
     java_seq.extend(entity_seq)
 
     java_seq.append('}\n')
@@ -110,10 +110,8 @@ def get_html_type(t):
     return t
 
 
-def get_java_entity_list(name):
+def get_java_entity_list(array=[]):
     java_seq = []
-    path = os.path.join('./files', name + '.md')
-    array = read_file(path)
     for obj in array:
         name = obj['name']
         t = get_java_type(obj['type'])
@@ -134,10 +132,8 @@ def get_java_entity_list(name):
     return java_seq
 
 
-def get_html_form_list(name):
+def get_html_form_list(array=[]):
     seq = []
-    path = os.path.join('./files', name + '.md')
-    array = read_file(path)
     for obj in array:
         obj_name = obj['name']
         t = get_html_type(obj['type'])
@@ -149,22 +145,18 @@ def get_html_form_list(name):
         # 添加\t
         tab = 7 * '\t'
         if obj_name == 'id':
-            seq.append(tab + '<input type="hidden" id="id" name="id" value="${' + lower_first(name) + '.id}">' + '\n')
+            seq.append(tab + '<input type="hidden" id="id" name="id" value="${bean.id}">' + '\n')
         else:
             seq.append(tab + '<div class="form-group">' + '\n')
             seq.append(tab + '\t' + '<label class="col-sm-3 control-label">' + remark + '</label>' + '\n')
             seq.append(tab + '\t' + '<div class="col-sm-8">' + '\n')
             if t == 'textarea':
                 seq.append(tab + '\t\t' +
-                           '<textarea id = "' + obj_name + '" name = "' + obj_name + '" class ="form-control" > ${' + lower_first(
-                    name) + '.' + obj_name + '} </textarea>' + '\n')
+                           '<textarea id = "' + obj_name + '" name = "' + obj_name + '" class ="form-control" > ${bean.' + obj_name + '} </textarea>' + '\n')
             else:
                 seq.append(tab + '\t\t' +
-                           '<input id="' + obj_name + '" name="' + obj_name + '" class="form-control" type="' + t + '" value="${' + lower_first(
-                    name) + '.' + obj_name + '}"  >' + '\n')
+                           '<input id="' + obj_name + '" name="' + obj_name + '" class="form-control" type="' + t + '" value="${bean.' + obj_name + '}"  >' + '\n')
             seq.append(tab + '\t' + '</div>' + '\n')
             seq.append(tab + '</div>' + '\n')
 
     return seq
-
-

@@ -23,11 +23,13 @@ class Genesis(object):
         #         print name
         print 'Genesis run ...'
         for name in os.listdir('./files'):
+            path = './files/' + name
+            array = read_file(path)
             name = name[:-3]
             # generator entity class
 
-            #seq = java_entity_generator(name, array)
-            #export_file('./out/'+name+'/entity', name + 'Entity.java', seq)
+            # seq = java_entity_generator(name, array)
+            # export_file('./out/'+name+'/entity', name + 'Entity.java', seq)
             # # generator dao class
             # seq = template('./templates/dao/INameDao.java', name)
             # export_file('./out/dao', 'I'+name + 'Dao.java', seq)
@@ -40,6 +42,5 @@ class Genesis(object):
             # seq = template('./templates/service/impl/NameServiceImpl.java', name)
             # export_file('./out/service/impl',  name + 'ServiceImpl.java', seq)
 
-            template = Templates(g_name=name)
+            template = Templates(g_name=name, g_array=array)
             template.render()
-

@@ -148,15 +148,15 @@ class Template:
 #################################################################################################
 
 # 暂时写死
-def render_template(path, name):
+def render_template(path, name, array):
     templates_file = open(path, 'r')
     seq = []
     seq.append(add_author() + '\n')
 
     for line in templates_file.readlines():
         line = Template(line)
-        line = line.safe_substitute(package_name=package_name, entity_list=''.join(get_java_entity_list(name)),
-                                    form_list=''.join(get_html_form_list(name)), name=lower_first(name), Name=name,
+        line = line.safe_substitute(package_name=package_name, entity_list=''.join(get_java_entity_list(array)),
+                                    form_list=''.join(get_html_form_list(array)), name=lower_first(name), Name=name,
                                     to2to=to2to(name))
         seq.append(line)
     return seq
@@ -164,9 +164,10 @@ def render_template(path, name):
 
 class Templates(object):
 
-    def __init__(self, g_name, path='./templates'):
+    def __init__(self, g_name, g_array=[], path='./templates'):
         print 'Templates init'
         self.g_name = g_name
+        self.g_array = g_array
         self.path = path
 
     def render(self):
@@ -178,7 +179,7 @@ class Templates(object):
             for name in files:
 
                 path = os.path.join(root, name)
-                seq = render_template(path, self.g_name)
+                seq = render_template(path, self.g_name, self.g_array)
                 out_path = root.replace('templates', 'out/' + self.g_name)
                 # 暂时这样定义 java 名称添加生成名称 html不添加生成名称
                 if out_path.find('html') > 0:
