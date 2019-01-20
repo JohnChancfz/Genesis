@@ -1,10 +1,10 @@
-package --package_name--.controller;
+package @{package_name}.controller;
 
 import com.doudou.common.common.JsonResult;
 import com.doudou.core.controller.BaseController;
-import --package_name--.service.--name--Service;
+import @{package_name}.service.@{Name}Service;
 import com.doudou.core.service.specification.SimpleSpecificationBuilder;
-import --package_name--.entity.--name--Entity;
+import @{package_name}.entity.@{Name}Entity;
 import com.doudou.core.service.specification.SpecificationOperator.Operator;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,50 +19,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/admin/--lower_name--")
-public class --name--Controller extends BaseController {
+@RequestMapping("/admin/@{name}")
+public class @{Name}Controller extends BaseController {
 
 	@Autowired
-	private --name--Service --lower_name--Service;
+	private @{Name}Service @{name}Service;
 
 
 	@RequestMapping(value = { "/", "/index" })
 	public String index() {
-		return "admin/--lower_name--/index";
+		return "admin/@{name}/index";
 	}
 
 	@RequestMapping(value = { "/list" })
 	@ResponseBody
-	public Page<--name--Entity> list() {
-		SimpleSpecificationBuilder<--name--Entity> builder = new SimpleSpecificationBuilder<--name--Entity>();
+	public Page<@{Name}Entity> list() {
+		SimpleSpecificationBuilder<@{Name}Entity> builder = new SimpleSpecificationBuilder<@{Name}Entity>();
 		String searchText = request.getParameter("searchText");
 		if(StringUtils.isNotBlank(searchText)){
 			builder.add("name", Operator.likeAll.name(), searchText);
 			builder.addOr("description", Operator.likeAll.name(), searchText);
 		}
-		Page<--name--Entity> page = --name--Service.findAll(builder.generateSpecification(), getPageRequest());
+		Page<@{Name}Entity> page = @{Name}Service.findAll(builder.generateSpecification(), getPageRequest());
 		return page;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(ModelMap map) {
-		return "admin/--lower_name--/form";
+		return "admin/@{name}/form";
 	}
 
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable Integer id,ModelMap map) {
-		--name--Entity --lower_name-- = --name--Service.find(id);
-		map.put("--lower_name--", --lower_name--);
-		return "admin/--lower_name--/form";
+		@{Name}Entity @{name} = @{Name}Service.find(id);
+		map.put("@{name}", @{name});
+		return "admin/@{name}/form";
 	}
 
 
 	@RequestMapping(value= {"/edit"},method = RequestMethod.POST)
 	@ResponseBody
-	public JsonResult edit(--name--Entity --lower_name--, ModelMap map){
+	public JsonResult edit(@{Name}Entity @{name}, ModelMap map){
 		try {
-			--lower_name--Service.saveOrUpdate(--lower_name--);
+			@{name}Service.saveOrUpdate(@{name});
 		} catch (Exception e) {
 			return JsonResult.failure(e.getMessage());
 		}
@@ -73,7 +73,7 @@ public class --name--Controller extends BaseController {
 	@ResponseBody
 	public JsonResult delete(@PathVariable Integer id,ModelMap map) {
 		try {
-			--lower_name--Service.delete(id);
+			@{name}Service.delete(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return JsonResult.failure(e.getMessage());

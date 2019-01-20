@@ -1,11 +1,11 @@
-package --package_name--.dao;
+package @{package_name}.dao;
 
-import --package_name--.dao.support.IBaseDao;
-import --package_name--.entity.--name--Entity;
+import @{package_name}.dao.support.IBaseDao;
+import @{package_name}.entity.@{Name}Entity;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface --name--Dao extends IBaseDao<--name--Entity, Integer> {
+public interface @{Name}Dao extends IBaseDao<@{Name}Entity, Integer> {
 
 }

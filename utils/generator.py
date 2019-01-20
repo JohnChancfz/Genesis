@@ -156,8 +156,8 @@ def get_html_form_list(name):
             seq.append(tab + '\t' + '<div class="col-sm-8">' + '\n')
             if t == 'textarea':
                 seq.append(tab + '\t\t' +
-                           '< textarea id = "' + obj_name + '" name = "' + obj_name + '" class ="form-control" > ${' + lower_first(
-                    name) + '.' + obj_name + '} < / textarea >' + '\n')
+                           '<textarea id = "' + obj_name + '" name = "' + obj_name + '" class ="form-control" > ${' + lower_first(
+                    name) + '.' + obj_name + '} </textarea>' + '\n')
             else:
                 seq.append(tab + '\t\t' +
                            '<input id="' + obj_name + '" name="' + obj_name + '" class="form-control" type="' + t + '" value="${' + lower_first(
@@ -166,3 +166,5 @@ def get_html_form_list(name):
             seq.append(tab + '</div>' + '\n')
 
     return seq
+
+

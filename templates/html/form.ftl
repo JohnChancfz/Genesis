@@ -19,12 +19,12 @@
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>--name--</h5>
+                        <h5>@{Name}</h5>
                     </div>
                     <div class="ibox-content">
                         <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/role/edit">
 
-                            --form_list--
+                            @{form_list}
 
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-3">

@@ -23,8 +23,6 @@ class Genesis(object):
         #         print name
         print 'Genesis run ...'
         for name in os.listdir('./files'):
-            path = os.path.join('./files', name)
-            array = read_file(path)
             name = name[:-3]
             # generator entity class
 

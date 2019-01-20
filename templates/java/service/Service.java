@@ -1,11 +1,11 @@
-package --package_name--.service;
+package @{package_name}.service;
 
-import --package_name--.entity.--name--Entity;
-import --package_name--.service.support.IBaseService;
+import @{package_name}.entity.@{Name}Entity;
+import @{package_name}.service.support.IBaseService;
 
 
-public interface --name--Service extends IBaseService<--name--Entity,Integer> {
+public interface @{Name}Service extends IBaseService<@{Name}Entity,Integer> {
 
-    void saveOrUpdate(--name-- --lower_name--);
+    void saveOrUpdate(@{Name} @{name});
 
 }

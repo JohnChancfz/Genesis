@@ -1,29 +1,29 @@
-package --package_name--.service.impl;
+package @{package_name}.service.impl;
 
-import --package_name--.dao.--name--Dao;
-import --package_name--.dao.support.IBaseDao;
-import --package_name--.entity.--name--Entity;
-import --package_name--.service.--name--Service;
-import --package_name--.service.support.impl.BaseServiceImpl;
+import @{package_name}.dao.@{Name}Dao;
+import @{package_name}.dao.support.IBaseDao;
+import @{package_name}.entity.@{Name}Entity;
+import @{package_name}.service.@{Name}Service;
+import @{package_name}.service.support.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class --name--ServiceImpl extends BaseServiceImpl<--name--Entity, Integer> implements --name--Service {
+public class @{Name}ServiceImpl extends BaseServiceImpl<@{Name}Entity, Integer> implements @{Name}Service {
 
 	@Autowired
-	private --name--Dao --lower_name--Dao;
+	private @{Name}Dao @{name}Dao;
 
 	@Override
-	public IBaseDao<--name--Entity, Integer> getBaseDao() {
-		return this.--lower_name--Dao;
+	public IBaseDao<@{Name}Entity, Integer> getBaseDao() {
+		return this.@{name}Dao;
 	}
 
 
     @Override
-	public void saveOrUpdate(--name-- --lower_name--) {
-		if(--lower_name--.getId() != null){
-			--name-- db = find(--lower_name--.getId());
+	public void saveOrUpdate(@{Name} @{name}) {
+		if(@{name}.getId() != null){
+			@{Name} db = find(@{name}.getId());
 			db.setUpdateTime(new Date());
 			update(db);
 		}else{

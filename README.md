@@ -16,13 +16,13 @@ Java Code Generation
 
 
 ## config
+    @{package_name}
+    @{Name}
+    @{name}
+    @{to2to}
+    @{entity_list}
+    @{form_list}
 
-```
-# package name
-package_name = 'com.cfz.admin'
-
-
-```
 
 > 暂时写在config.py里面 没时间 实现config 读取config配置文件
 

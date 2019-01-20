@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>--name--列表</title>
+    <title>@{Name}列表</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="shortcut icon" href="favicon.ico">
@@ -21,7 +21,7 @@
             <div class="col-sm-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5>--name--管理</h5>
+                        <h5>@{Name}管理</h5>
                     </div>
                     <div class="ibox-content">
                         <p>
@@ -59,7 +59,7 @@
 			    //必须设置，不然request.getParameter获取不到请求参数
 			    contentType: "application/x-www-form-urlencoded",
 			    //获取数据的Servlet地址
-			    url: "${ctx!}/admin/--lower_name--/list",
+			    url: "${ctx!}/admin/@{name}/list",
 			    //表格显示条纹
 			    striped: true,
 			    //启动分页
@@ -133,7 +133,7 @@
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '${ctx!}/admin/--lower_name--/edit/' + id,
+        	      content: '${ctx!}/admin/@{name}/edit/' + id,
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
@@ -146,7 +146,7 @@
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '${ctx!}/admin/--lower_name--/add',
+        	      content: '${ctx!}/admin/@{name}/add',
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
@@ -158,7 +158,7 @@
         		$.ajax({
     	    		   type: "POST",
     	    		   dataType: "json",
-    	    		   url: "${ctx!}/admin/--lower_name--/delete/" + id,
+    	    		   url: "${ctx!}/admin/@{name}/delete/" + id,
     	    		   success: function(msg){
 	 	   	    			layer.msg(msg.message, {time: 2000},function(){
 	 	   	    				$('#table_list').bootstrapTable("refresh");
