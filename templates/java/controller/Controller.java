@@ -53,7 +53,7 @@ public class @{Name}Controller extends BaseController {
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable Integer id,ModelMap map) {
 		@{Name}Entity @{name} = @{Name}Service.find(id);
-		map.put("@{name}", @{name});
+		map.put("bean", @{name});
 		return "admin/@{name}/form";
 	}
 

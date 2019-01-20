@@ -21,15 +21,15 @@ public class @{Name}ServiceImpl extends BaseServiceImpl<@{Name}Entity, Integer> 
 
 
     @Override
-	public void saveOrUpdate(@{Name} @{name}) {
-		if(@{name}.getId() != null){
-			@{Name} db = find(@{name}.getId());
+	public void saveOrUpdate(@{Name}Entity bean) {
+		if(bean.getId() != null){
+			@{Name}Entity db = find(bean.getId());
 			db.setUpdateTime(new Date());
 			update(db);
 		}else{
-			role.setCreateTime(new Date());
-			role.setUpdateTime(new Date());
-			save(role);
+			bean.setCreateTime(new Date());
+			bean.setUpdateTime(new Date());
+			save(bean);
 		}
 	}
 
