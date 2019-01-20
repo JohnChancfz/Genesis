@@ -22,7 +22,7 @@
                         <h5>@{Name}</h5>
                     </div>
                     <div class="ibox-content">
-                        <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/role/edit">
+                        <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/@{name}/edit">
 
                             @{form_list}
 
@@ -42,22 +42,10 @@
     <script type="text/javascript">
     $(document).ready(function () {
 	    $("#frm").validate({
-    	    rules: {
-    	    	roleKey: {
-    	        required: true,
-    	        minlength: 4,
-    	    	maxlength: 30
-    	      },
+    	    rules:
     	        name: {
     	        required: true,
     	        minlength: 4,
-    	    	maxlength: 30
-    	      },
-    	        status: {
-    	        required: true
-    	      },
-    	      	description: {
-    	        required: true,
     	        maxlength: 40
     	      }
     	    },
@@ -66,7 +54,7 @@
     	    	$.ajax({
    	    		   type: "POST",
    	    		   dataType: "json",
-   	    		   url: "${ctx!}/admin/role/edit",
+   	    		   url: "${ctx!}/admin/@{name}/edit",
    	    		   data: $(form).serialize(),
    	    		   success: function(msg){
 	   	    			layer.msg(msg.message, {time: 2000},function(){
