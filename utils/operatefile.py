@@ -29,8 +29,6 @@ def read_file(path):
         default = elements[2].strip()
         remark = elements[3].strip()
 
-        t1 = get_java_type(t1)
-
         obj = {"name": name, "type": t1, "size": t2, "default": default, "remark": remark}
         seq.append(obj)
 
@@ -46,18 +44,4 @@ def export_file(path, name, seq):
     java_file.close()
 
 
-def get_java_type(t):
-    if t.lower() == 'float':
-        t = 'Float'
-    if t.lower() == 'double':
-        t = 'Double'
-    if t.lower() in ['string', 'text', 'varchar']:
-        t = 'String'
-    # if t.lower() == 'int' or t.lower() == 'integer':
-    if t.lower().find('int') >= 0:
-        t = 'Integer'
-    if t.lower() == 'datetime' or t.lower() == 'date':
-        t = 'Date'
-    # if t.lower() == 'tinyint':
-    #    t = 'Short'
-    return t
+

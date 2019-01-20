@@ -8,7 +8,7 @@
 from config import package_name
 from utils.string_utils import lower_first, to2to
 from utils.operatefile import export_file
-from utils.generator import add_author, get_java_entity_list
+from utils.generator import add_author, get_java_entity_list, get_html_form_list
 import os
 
 
@@ -23,6 +23,8 @@ def template(path, name):
             lower_first(name))
         if line.find('--entity_list--') >= 0:
             seq.extend(get_java_entity_list(name))
+        elif line.find('--form_list--') >= 0:
+            seq.extend(get_html_form_list(name))
         else:
             seq.append(line)
     return seq
