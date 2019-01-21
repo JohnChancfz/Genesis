@@ -32,10 +32,10 @@ class Genesis(object):
 
             for t in templates:
                 out_path = t['root'].replace('templates', 'out/' + name)
-                print out_path
+                #print out_path
                 out_name = t['name']
 
-                print out_name
+                #print out_name
                 seq = []
                 seq.append(add_author() + '\n')
                 for line in t['content']:
