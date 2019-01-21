@@ -147,42 +147,21 @@ class Template:
 
 #################################################################################################
 
-# 暂时写死
-def render_template(path, name, array):
-    templates_file = open(path, 'r')
-    seq = []
-    seq.append(add_author() + '\n')
-
-    for line in templates_file.readlines():
-        line = Template(line)
-        line = line.safe_substitute(package_name=package_name, entity_list=''.join(get_java_entity_list(array)),
-                                    form_list=''.join(get_html_form_list(array)), name=lower_first(name), Name=name,
-                                    to2to=to2to(name))
-        seq.append(line)
-    return seq
-
 
 class Templates(object):
 
-    def __init__(self, g_name, g_array=[], path='./templates'):
+    def __init__(self, path='./templates'):
         print 'Templates init'
-        self.g_name = g_name
-        self.g_array = g_array
+
         self.path = path
 
-    def render(self):
-
+    def get_template_array(self):
+        array = []
         for root, dirs, files in os.walk(self.path):
-            # print 'root = ', root
-            # print 'dirs = ', dirs
-            # print files
             for name in files:
-
                 path = os.path.join(root, name)
-                seq = render_template(path, self.g_name, self.g_array)
-                out_path = root.replace('templates', 'out/' + self.g_name)
-                # 暂时这样定义 java 名称添加生成名称 html不添加生成名称
-                if out_path.find('html') > 0:
-                    export_file(out_path, name, seq)
-                else:
-                    export_file(out_path, self.g_name + name, seq)
+                fs = open(path, 'r')
+                p = {'name': name, 'path': path, 'root': root, 'content': fs.readlines()}
+                fs.close()
+                array.append(p)
+        return array
