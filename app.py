@@ -28,7 +28,6 @@ class Genesis(object):
             name = name[:-3]
 
             template = Templates()
-            # template.render()
             templates = template.get_template_array()
 
             for t in templates:
