@@ -4,7 +4,7 @@
 '''
 
 # package name
-package_name = 'com.cfz.admin'
+package_name = 'com.doudou.core'
 
 # entity
 entity = {'fileName': 'entity',

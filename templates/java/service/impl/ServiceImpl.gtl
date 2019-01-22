@@ -24,11 +24,8 @@ public class @{Name}ServiceImpl extends BaseServiceImpl<@{Name}Entity, Integer> 
 	public void saveOrUpdate(@{Name}Entity bean) {
 		if(bean.getId() != null){
 			@{Name}Entity db = find(bean.getId());
-			db.setUpdateTime(new Date());
 			update(db);
 		}else{
-			bean.setCreateTime(new Date());
-			bean.setUpdateTime(new Date());
 			save(bean);
 		}
 	}

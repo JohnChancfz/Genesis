@@ -42,7 +42,7 @@
     <script type="text/javascript">
     $(document).ready(function () {
 	    $("#frm").validate({
-    	    rules:
+    	    rules:{
     	        name: {
     	        required: true,
     	        minlength: 4,

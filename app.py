@@ -32,7 +32,7 @@ class Genesis(object):
 
             for t in templates:
                 out_path = t['root'].replace('templates', 'out/' + name)
-                #print out_path
+                print out_path
                 out_name = t['name']
 
                 #print out_name
@@ -49,6 +49,6 @@ class Genesis(object):
 
                 # 暂时这样定义 java 名称添加生成名称 html不添加生成名称
                 if out_name.find('.ftl') > 0:
-                    export_file(out_path, out_name, seq)
+                    export_file(out_path+'/'+lower_first(name), out_name, seq)
                 else:
                     export_file(out_path, name + out_name.replace('.gtl', '.java'), seq)

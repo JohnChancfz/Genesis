@@ -90,7 +90,7 @@ def get_java_type(t):
     if t.lower().find('int') >= 0:
         t = 'Integer'
     if t.lower() == 'datetime' or t.lower() == 'date':
-        t = 'Date'
+        t = 'java.util.Date'
     # if t.lower() == 'tinyint':
     #    t = 'Short'
     return t
