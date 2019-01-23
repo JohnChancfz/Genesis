@@ -134,14 +134,18 @@ def get_java_entity_list(array=[]):
                 java_seq.append('\t' + '@GeneratedValue(strategy = GenerationType.AUTO)' + '\n')
             java_seq.append('\t' + '@Column(name = "id", nullable = false)' + '\n')
         else:
-            size_str = ' '
+            size_str = ''
             if obj['size'] > 0:
-                size_str = '(' + str(obj['size']) + ') '
+                size_str = '(' + str(obj['size']) + ')'
             # column ='nullable = false,'+
+            default_str = ''
+            if default.lower() != 'null' and default != '':
+                default_str = ' default ' + default
 
-            column = 'columnDefinition = "' + obj['type'] + size_str + 'default ' + default + '"'
+            column = 'columnDefinition = "' + obj['type'] + size_str + default_str + '"'
             print column
-            # java_seq.append('\t'+'@Column()'+'\n')
+            # 暂时不添加@Column 有好多特性没有完成
+            #java_seq.append('\t' + '@Column(' + column + ')' + '\n')
         java_seq.append('\t' + 'private ' + t + ' ' + name + ';' + '\n\n')
         java_seq.append(getter_and_setter(obj))
 
