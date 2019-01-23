@@ -15,16 +15,19 @@ def generator():
     print ''
 
 
-def add_author():
+def add_author(name):
     author = '''
-    /**
-      *
-      * @author Genesis
-      * https://github.com/JohnChancfz/Genesis
-      *
-      */
-    '''
-    return author
+        /**
+          *
+          * @author Genesis
+          * https://github.com/JohnChancfz/Genesis
+          *
+          */
+        '''
+    if name.find('.gtl') > 0:
+        return author
+    else:
+        return '<!-- @author Genesis (https://github.com/JohnChancfz/Genesis) -->\n'
 
 
 def get_java_package_name(file_name):
