@@ -134,9 +134,10 @@ def get_java_entity_list(array=[]):
                 java_seq.append('\t' + '@GeneratedValue(strategy = GenerationType.AUTO)' + '\n')
             java_seq.append('\t' + '@Column(name = "id", nullable = false)' + '\n')
         else:
+            # 暂时不添加@Column 有好多特性没有完成
             size_str = ''
-            if obj['size'] > 0:
-                size_str = '(' + str(obj['size']) + ')'
+            if size > 0:
+                size_str = '(' + str(size) + ')'
             # column ='nullable = false,'+
             default_str = ''
             if default.lower() != 'null' and default != '':
