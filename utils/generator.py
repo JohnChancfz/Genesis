@@ -80,16 +80,16 @@ def java_entity_generator(name, array, isExtends=False):
 
 
 def get_java_type(t):
-    if t.lower() == 'float':
+    if t.lower().find('float') >= 0:
         t = 'Float'
-    if t.lower() == 'double':
+    if t.lower().find('double') >= 0:
         t = 'Double'
     if t.lower() in ['string', 'text', 'varchar']:
         t = 'String'
     # if t.lower() == 'int' or t.lower() == 'integer':
     if t.lower().find('int') >= 0:
         t = 'Integer'
-    if t.lower() == 'decimal':
+    if t.lower().find('decimal') >= 0:
         t = 'java.math.BigDecimal'
     if t.lower() == 'datetime' or t.lower() == 'date':
         t = 'java.util.Date'
@@ -99,7 +99,8 @@ def get_java_type(t):
 
 
 def get_html_type(t):
-    if t.lower() in ['float', 'double', 'decimal'] or t.lower().find('int') >= 0:
+    if t.lower().find('float') >= 0 or t.lower().find('double') >= 0 or t.lower().find(
+            'decimal') >= 0 or t.lower().find('int') >= 0:
         t = 'number'
     elif t.lower() == 'text':
         t = 'textarea'
