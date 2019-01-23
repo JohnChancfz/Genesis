@@ -89,6 +89,8 @@ def get_java_type(t):
     # if t.lower() == 'int' or t.lower() == 'integer':
     if t.lower().find('int') >= 0:
         t = 'Integer'
+    if t.lower() == 'decimal':
+        t = 'java.math.BigDecimal'
     if t.lower() == 'datetime' or t.lower() == 'date':
         t = 'java.util.Date'
     # if t.lower() == 'tinyint':
@@ -97,7 +99,7 @@ def get_java_type(t):
 
 
 def get_html_type(t):
-    if t.lower() in ['float', 'double'] or t.lower().find('int') >= 0:
+    if t.lower() in ['float', 'double', 'decimal'] or t.lower().find('int') >= 0:
         t = 'number'
     elif t.lower() == 'text':
         t = 'textarea'
