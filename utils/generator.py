@@ -117,6 +117,7 @@ def get_html_type(t):
 
 
 def get_java_entity_list(array=[]):
+    print 'get_java_entity_list'
     java_seq = []
     for obj in array:
         name = obj['name']
@@ -132,6 +133,15 @@ def get_java_entity_list(array=[]):
             if default == 'auto':
                 java_seq.append('\t' + '@GeneratedValue(strategy = GenerationType.AUTO)' + '\n')
             java_seq.append('\t' + '@Column(name = "id", nullable = false)' + '\n')
+        else:
+            size_str = ' '
+            if obj['size'] > 0:
+                size_str = '(' + str(obj['size']) + ') '
+            # column ='nullable = false,'+
+
+            column = 'columnDefinition = "' + obj['type'] + size_str + 'default ' + default + '"'
+            print column
+            # java_seq.append('\t'+'@Column()'+'\n')
         java_seq.append('\t' + 'private ' + t + ' ' + name + ';' + '\n\n')
         java_seq.append(getter_and_setter(obj))
 

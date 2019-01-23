@@ -30,6 +30,9 @@ class Genesis(object):
             template = Templates()
             templates = template.get_template_array()
 
+            entity_list = ''.join(get_java_entity_list(array))
+            form_list = ''.join(get_html_form_list(array))
+
             for t in templates:
                 out_path = t['root'].replace('templates', 'out/' + name)
                 print out_path
@@ -41,8 +44,8 @@ class Genesis(object):
                 for line in t['content']:
                     line = Template(line)
                     line = line.safe_substitute(package_name=package_name,
-                                                entity_list=''.join(get_java_entity_list(array)),
-                                                form_list=''.join(get_html_form_list(array)), name=lower_first(name),
+                                                entity_list=entity_list,
+                                                form_list=form_list, name=lower_first(name),
                                                 Name=name,
                                                 to2to=to2to(name))
                     seq.append(line)
