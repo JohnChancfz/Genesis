@@ -32,6 +32,8 @@ class Genesis(object):
 
             entity_list = ''.join(get_java_entity_list(array))
             form_list = ''.join(get_html_form_list(array))
+            table_column = ''
+            validate_rules = ''
 
             for t in templates:
                 out_path = t['root'].replace('templates', 'out/' + name)
