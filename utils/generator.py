@@ -146,7 +146,7 @@ def get_java_entity_list(array=[]):
             column = 'columnDefinition = "' + obj['type'] + size_str + default_str + '"'
             print column
             # 暂时不添加@Column 有好多特性没有完成
-            #java_seq.append('\t' + '@Column(' + column + ')' + '\n')
+            # java_seq.append('\t' + '@Column(' + column + ')' + '\n')
         java_seq.append('\t' + 'private ' + t + ' ' + name + ';' + '\n\n')
         java_seq.append(getter_and_setter(obj))
 
@@ -181,3 +181,11 @@ def get_html_form_list(array=[]):
             seq.append(tab + '</div>' + '\n')
 
     return seq
+
+
+def get_submit_validate():
+    return ''
+
+
+def get_table_columns():
+    return ''
