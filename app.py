@@ -4,7 +4,7 @@
     @Author John Chan 'chenfazhun@163.com'
 '''
 from utils.operatefile import read_file, export_file
-from utils.generator import add_author, get_html_form_list, get_java_entity_list
+from utils.generator import add_author, Gennerator
 from templating import Template, Templates
 
 from config import package_name
@@ -30,9 +30,11 @@ class Genesis(object):
             template = Templates()
             templates = template.get_template_array()
 
-            entity_list = ''.join(get_java_entity_list(array))
-            form_list = ''.join(get_html_form_list(array))
-            table_column = ''
+            generator = Gennerator()
+
+            entity_list = ''.join(generator.get_java_entity_list(array))
+            form_list = ''.join(generator.get_html_form_list(array))
+            table_column = ','.join(generator.get_table_columns(array))
             validate_rules = ''
 
             for t in templates:
@@ -49,7 +51,7 @@ class Genesis(object):
                                                 entity_list=entity_list,
                                                 form_list=form_list, name=lower_first(name),
                                                 Name=name,
-                                                to2to=to2to(name))
+                                                to2to=to2to(name), table_column=table_column)
                     seq.append(line)
 
                 # 暂时这样定义 java 名称添加生成名称 html不添加生成名称

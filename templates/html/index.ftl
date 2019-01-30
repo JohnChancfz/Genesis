@@ -88,33 +88,7 @@
 			        };
 			    },
 			    //数据列
-			    columns: [{
-			        title: "ID",
-			        field: "id",
-			        sortable: true
-			    },{
-			        title: "角色名称",
-			        field: "name"
-			    },{
-			        title: "角色KEY",
-			        field: "roleKey"
-			    },{
-			        title: "状态",
-			        field: "status",
-			        formatter: function(value,row,index){
-			        	if (value == '0')
-                        	return '<span class="label label-primary">正常</span>';
-                        return '<span class="label label-danger">禁用</span>';
-			        }
-			    },{
-			        title: "创建时间",
-			        field: "createTime",
-			        sortable: true
-			    },{
-			        title: "更新时间",
-			        field: "updateTime",
-			        sortable: true
-			    },{
+			    columns: [@{table_column},{
 			        title: "操作",
 			        field: "empty",
                     formatter: function (value, row, index) {

@@ -11,10 +11,6 @@ from utils.operatefile import read_file
 import os
 
 
-def generator():
-    print ''
-
-
 def add_author(name):
     author = '''
         /**
@@ -116,76 +112,98 @@ def get_html_type(t):
     return t
 
 
-def get_java_entity_list(array=[]):
-    print 'get_java_entity_list'
-    java_seq = []
-    for obj in array:
-        name = obj['name']
-        t = get_java_type(obj['type'])
-        size = obj['size']
-        remark = obj['remark']
-        default = obj['default']
-        java_seq.append('\n')
-        java_seq.append('\t' + '// ' + remark + '\n')
-        if name == 'id':
-            java_seq.append('\t' + '@Id' + '\n')
-            # GenerationType
-            if default == 'auto':
-                java_seq.append('\t' + '@GeneratedValue(strategy = GenerationType.AUTO)' + '\n')
-            java_seq.append('\t' + '@Column(name = "id", nullable = false)' + '\n')
-        else:
-            # 暂时不添加@Column 有好多特性没有完成
-            size_str = ''
-            if size > 0:
-                size_str = '(' + str(size) + ')'
-            # column ='nullable = false,'+
-            default_str = ''
-            if default.lower() != 'null' and default != '':
-                default_str = ' default ' + default
+class Gennerator(object):
+    def __init__(self):
+        print ''
 
-            column = 'columnDefinition = "' + obj['type'] + size_str + default_str + '"'
-            print column
-            # 暂时不添加@Column 有好多特性没有完成
-            # java_seq.append('\t' + '@Column(' + column + ')' + '\n')
-        java_seq.append('\t' + 'private ' + t + ' ' + name + ';' + '\n\n')
-        java_seq.append(getter_and_setter(obj))
-
-    return java_seq
-
-
-def get_html_form_list(array=[]):
-    seq = []
-    for obj in array:
-        obj_name = obj['name']
-        t = get_html_type(obj['type'])
-        size = obj['size']
-        remark = obj['remark']
-        default = obj['default']
-        seq.append('\n')
-
-        # 添加\t
-        tab = 7 * '\t'
-        if obj_name == 'id':
-            seq.append(tab + '<input type="hidden" id="id" name="id" value="${bean.id}">' + '\n')
-        else:
-            seq.append(tab + '<div class="form-group">' + '\n')
-            seq.append(tab + '\t' + '<label class="col-sm-3 control-label">' + remark + '</label>' + '\n')
-            seq.append(tab + '\t' + '<div class="col-sm-8">' + '\n')
-            if t == 'textarea':
-                seq.append(tab + '\t\t' +
-                           '<textarea id = "' + obj_name + '" name = "' + obj_name + '" class ="form-control" > ${bean.' + obj_name + '} </textarea>' + '\n')
+    def get_java_entity_list(self, arra=[]):
+        print 'get_java_entity_list'
+        java_seq = []
+        for obj in arra:
+            name = obj['name']
+            t = get_java_type(obj['type'])
+            size = obj['size']
+            remark = obj['remark']
+            default = obj['default']
+            java_seq.append('\n')
+            java_seq.append('\t' + '// ' + remark + '\n')
+            if name == 'id':
+                java_seq.append('\t' + '@Id' + '\n')
+                # GenerationType
+                if default == 'auto':
+                    java_seq.append('\t' + '@GeneratedValue(strategy = GenerationType.AUTO)' + '\n')
+                java_seq.append('\t' + '@Column(name = "id", nullable = false)' + '\n')
             else:
-                seq.append(tab + '\t\t' +
-                           '<input id="' + obj_name + '" name="' + obj_name + '" class="form-control" type="' + t + '" value="${bean.' + obj_name + '}"  >' + '\n')
-            seq.append(tab + '\t' + '</div>' + '\n')
-            seq.append(tab + '</div>' + '\n')
+                # 暂时不添加@Column 有好多特性没有完成
+                size_str = ''
+                if size > 0:
+                    size_str = '(' + str(size) + ')'
+                # column ='nullable = false,'+
+                default_str = ''
+                if default.lower() != 'null' and default != '':
+                    default_str = ' default ' + default
 
-    return seq
+                column = 'columnDefinition = "' + obj['type'] + size_str + default_str + '"'
+                print column
+                # 暂时不添加@Column 有好多特性没有完成
+                # java_seq.append('\t' + '@Column(' + column + ')' + '\n')
+            java_seq.append('\t' + 'private ' + t + ' ' + name + ';' + '\n\n')
+            java_seq.append(getter_and_setter(obj))
 
+        return java_seq
 
-def get_submit_validate():
-    return ''
+    def get_html_form_list(self, array=[]):
+        seq = []
+        for obj in array:
+            obj_name = obj['name']
+            t = get_html_type(obj['type'])
+            size = obj['size']
+            remark = obj['remark']
+            default = obj['default']
+            seq.append('\n')
 
+            # 添加\t
+            tab = 7 * '\t'
+            if obj_name == 'id':
+                seq.append(tab + '<input type="hidden" id="id" name="id" value="${bean.id}">' + '\n')
+            else:
+                seq.append(tab + '<div class="form-group">' + '\n')
+                seq.append(tab + '\t' + '<label class="col-sm-3 control-label">' + remark + '</label>' + '\n')
+                seq.append(tab + '\t' + '<div class="col-sm-8">' + '\n')
+                if t == 'textarea':
+                    seq.append(tab + '\t\t' +
+                               '<textarea id = "' + obj_name + '" name = "' + obj_name + '" class ="form-control" > ${bean.' + obj_name + '} </textarea>' + '\n')
+                else:
+                    seq.append(tab + '\t\t' +
+                               '<input id="' + obj_name + '" name="' + obj_name + '" class="form-control" type="' + t + '" value="${bean.' + obj_name + '}"  >' + '\n')
+                seq.append(tab + '\t' + '</div>' + '\n')
+                seq.append(tab + '</div>' + '\n')
 
-def get_table_columns():
-    return ''
+        return seq
+
+    def get_submit_validate(self, array=[]):
+        return ''
+
+    def get_table_columns(self, array=[]):
+        # {
+        #     title: "ID",
+        #     field: "id",
+        #     sortable: true
+        # }
+        seq = []
+        for obj in array:
+            obj_name = obj['name']
+            t = get_html_type(obj['type'])
+            size = obj['size']
+            remark = obj['remark']
+            default = obj['default']
+
+            # 添加\t
+            tab = 7 * '\t'
+            if obj_name == 'id':
+                seq.append('{title:"ID",field:"id",sortable:true}')
+            else:
+                if default != 'null' and default != "":
+                    seq.append('{title:"' + remark + '",field:"' + obj_name + '",sortable:true}' + '\n')
+        print seq
+        return seq

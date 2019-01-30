@@ -5,10 +5,7 @@
     @Author John Chan 'chenfazhun@163.com'
 '''
 
-from config import package_name
-from utils.string_utils import lower_first, to2to
-from utils.operatefile import export_file
-from utils.generator import add_author, get_java_entity_list, get_html_form_list
+
 import os
 
 ##########################################################################
