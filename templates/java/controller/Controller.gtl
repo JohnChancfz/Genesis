@@ -60,9 +60,9 @@ public class @{Name}Controller extends BaseController {
 
 	@RequestMapping(value= {"/edit"},method = RequestMethod.POST)
 	@ResponseBody
-	public JsonResult edit(@{Name}Entity @{name}, ModelMap map){
+	public JsonResult edit(@{Name}Entity bean, ModelMap map){
 		try {
-			@{name}Service.saveOrUpdate(@{name});
+			@{name}Service.saveOrUpdate(bean);
 		} catch (Exception e) {
 			return JsonResult.failure(e.getMessage());
 		}

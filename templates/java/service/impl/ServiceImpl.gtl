@@ -23,8 +23,7 @@ public class @{Name}ServiceImpl extends BaseServiceImpl<@{Name}Entity, Integer> 
     @Override
 	public void saveOrUpdate(@{Name}Entity bean) {
 		if(bean.getId() != null){
-			@{Name}Entity db = find(bean.getId());
-			update(db);
+			update(bean);
 		}else{
 			save(bean);
 		}

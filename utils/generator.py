@@ -182,7 +182,30 @@ class Gennerator(object):
         return seq
 
     def get_submit_validate(self, array=[]):
-        return ''
+        # name: {
+        #     required: true,
+        #     minlength: 4,
+        #     maxlength: 40
+        # }
+        seq = []
+        for obj in array:
+            obj_name = obj['name']
+            t = get_html_type(obj['type'])
+            size = obj['size']
+            remark = obj['remark']
+            default = obj['default']
+
+            if obj_name != 'id':
+                minlength = 4
+                maxlength = 255
+                if t == 'number':
+                    minlength = 1
+                    maxlength = 12
+                if default != 'null' and default != "":
+                    seq.append(
+                        obj_name + ': {required: true,minlength: ' + str(minlength) + ',maxlength: ' + str(maxlength) + '}' + '\n')
+        print seq
+        return seq
 
     def get_table_columns(self, array=[]):
         # {

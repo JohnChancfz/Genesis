@@ -43,11 +43,7 @@
     $(document).ready(function () {
 	    $("#frm").validate({
     	    rules:{
-    	        name: {
-    	        required: true,
-    	        minlength: 4,
-    	        maxlength: 40
-    	      }
+    	        @{validate_rules}
     	    },
     	    messages: {},
     	    submitHandler:function(form){

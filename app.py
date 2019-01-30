@@ -35,7 +35,7 @@ class Genesis(object):
             entity_list = ''.join(generator.get_java_entity_list(array))
             form_list = ''.join(generator.get_html_form_list(array))
             table_column = ','.join(generator.get_table_columns(array))
-            validate_rules = ''
+            validate_rules = ','.join(generator.get_submit_validate(array))
 
             for t in templates:
                 out_path = t['root'].replace('templates', 'out/' + name)
@@ -51,7 +51,8 @@ class Genesis(object):
                                                 entity_list=entity_list,
                                                 form_list=form_list, name=lower_first(name),
                                                 Name=name,
-                                                to2to=to2to(name), table_column=table_column)
+                                                to2to=to2to(name), table_column=table_column,
+                                                validate_rules=validate_rules)
                     seq.append(line)
 
                 # 暂时这样定义 java 名称添加生成名称 html不添加生成名称
