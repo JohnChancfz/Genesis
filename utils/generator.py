@@ -172,7 +172,7 @@ class Gennerator(object):
                 seq.append(tab + '\t' + '<div class="col-sm-8">' + '\n')
                 if t == 'textarea':
                     seq.append(tab + '\t\t' +
-                               '<textarea id = "' + obj_name + '" name = "' + obj_name + '" class ="form-control" > ${bean.' + obj_name + '} </textarea>' + '\n')
+                               '<textarea id = "' + obj_name + '" name = "' + obj_name + '" class ="form-control" >${bean.' + obj_name + '}</textarea>' + '\n')
                 else:
                     seq.append(tab + '\t\t' +
                                '<input id="' + obj_name + '" name="' + obj_name + '" class="form-control" type="' + t + '" value="${bean.' + obj_name + '}"  >' + '\n')
