@@ -143,8 +143,8 @@ class Gennerator(object):
                 if default.lower() != 'null' and default != '':
                     default_str = ' default ' + default
 
-                column = 'columnDefinition = "' + obj['type'] + size_str + default_str + '"'
-                print column
+                column = 'columnDefinition = "' + obj['type'] + size_str + default_str + ' comment \''+remark+'\' "'
+                print '\t' + '@Column(' + column + ')' + '\n'
                 # 暂时不添加@Column 有好多特性没有完成
                 # java_seq.append('\t' + '@Column(' + column + ')' + '\n')
             java_seq.append('\t' + 'private ' + t + ' ' + name + ';' + '\n\n')
